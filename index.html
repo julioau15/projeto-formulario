@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="src/styles/style.css">
+    <!-- adicionado link para icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 
     <title>Formulário</title>
@@ -13,6 +14,7 @@
         <div id="form-header">
             <h1 id="form-title">Criar conta</h1>
             <button class="btn-default">
+                <!-- usando icons com a tag <i> -->
                 <i class="fa-solid fa-right-to-bracket"></i>
             </button>
         </div>
@@ -20,12 +22,23 @@
 
             <div id="input-container">
                 <div class="input-box">
+                    <!-- utilizei o label ao invés de h1 mas poderia ser sem problemas -->
                     <label for="name" class="form-label">
                     Primeiro nome
                     </label>
+
+                   
+                    <!-- type="text" diz que o input vai receber um texto -->
+                    <!-- type="password" diz que o input vai receber uma senha -->
+                    <!-- placeholder mostra uma mensagem dentro do input -->
+                    <!-- type="date" diz que o input vai receber uma data -->
+                    <!-- type="email" diz que o input vai receber um email -->
+                    <!-- type="radio" diz que o imput vai ser do tipo seleção -->
+
+                    <!-- um jeito de deixar o codigo organizado -->
                     <div class="input-field">
                         <input 
-                        type="text"
+                        type="text" 
                         name="name"
                         id="name"
                         class="form-control"
@@ -123,6 +136,8 @@
                 <div class="radio-container">
                     <label class="form-label">Gênero</label>
 
+
+                   
                     <div id="gender-inputs">
                         <div class="radio-box">
                             <input
@@ -174,7 +189,7 @@
             </button>
         </form>
     </main>
-
+    <!-- chamando o javascript -->
     <script src="src/javascript/script.js"></script>
 </body>
 </html>

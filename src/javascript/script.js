@@ -1,8 +1,11 @@
+// seleciona o form inteiro
 const form = document.querySelector('#form');
 
+// adiciona uma função acionada quando o botão for pressionado
 form.addEventListener('submit', function (e) {
     e.preventDefault();
 
+// constante geral usada para todos os fields
     const fields = [
         {
             id: 'name',
@@ -38,19 +41,27 @@ form.addEventListener('submit', function (e) {
             id: 'confirm-password',
             label: 'Confirmar-senha',
             validator: passwordMatch
-        },
+        }
     ]
-
+// constante do icone de erro
     const errorIcon = '<i class="fa-solid fa-circle-exclamation"></i>';
 
+// função para todos os fields que seliceiona a constante fields
+// ela gera a mensagem de erro para todos
     fields.forEach(function (field) {
+
+        //essas constantes precisam pegar valores especificos para se adequar a costante fields
         const input = document.getElementById(field.id);
         const inputBox = input.closest('.input-box');
         const inputValue = input.value;
 
+        // seleciona a classe error
         const errorSpan = inputBox.querySelector('.error');
+        // muda o conteudo dessa classe no html
         errorSpan.innerHTML = '';
 
+
+        // remove a classe invalid e adiciona a classe valid
         inputBox.classList.remove('invalid');
         inputBox.classList.add('valid');
 
@@ -63,16 +74,19 @@ form.addEventListener('submit', function (e) {
         }
     })  
 
-    const genders = document.getElementsByName('gender');
+    // os inputs de genero são diferentes e precisam desses parametros
+    const genders = document.getElementsByName('gender'); // seleciona pelo nome
     const radioContainer = document.querySelector('.radio-container');
     const genderErrorSpan = radioContainer.querySelector('.error');
 
+    // essa constante encontra as opções de genero marcadas
+    // ela deve ser invalida e gera a mensagem de erro
     const selectedGender = [...genders].find(input => input.checked);
     radioContainer.classList.add('invalid');
     radioContainer.classList.remove('valid');
     genderErrorSpan.innerHTML = `${errorIcon} Selecione um gênero!`;
     
-
+    // quando for verdadeira ela retira a mensagem de erro
     if (selectedGender){
         radioContainer.classList.remove('invalid');
         genderErrorSpan.innerHTML = '';
@@ -80,11 +94,12 @@ form.addEventListener('submit', function (e) {
         return;
     }
 })
-
+// quando o valor for true ele retorna sem erro
 function isEmpty(value){
     return value === '';
 }
 
+// função que define se os nomes são validos
 function nameIsValid(value){
     const validator = {
         isValid: true,
@@ -96,7 +111,7 @@ function nameIsValid(value){
         validator.errorMessage = 'O campo é obrigatório!';
         return validator;
     }
-
+    // minimo de caracteres no nome
     const min = 3;
 
     if(value.length < min){
@@ -105,6 +120,7 @@ function nameIsValid(value){
         return validator;
     }
 
+    // a constante regex adiciona uma validação do conteudo do input, se ele é apenas letras por exemplo
     const regex = /^[a-zA-Z]+$/;
     if (!regex.test(value)){
         validator.isValid = false;
@@ -113,6 +129,7 @@ function nameIsValid(value){
     return validator;
 }
 
+// verifica se a data de nascimento é válida
 function dateIsValid(value){
     const validator = {
         isValid: true,
@@ -125,6 +142,8 @@ function dateIsValid(value){
         return validator;
     }
 
+    // constante que pega a data 
+    //getFullYear() pega a data atual
     const year = new Date(value).getFullYear();
 
     if (year < 1920 || year > new Date().getFullYear()){
@@ -136,6 +155,7 @@ function dateIsValid(value){
     return validator;
 }
 
+// verifica se o email é valido
 function emailIsValid(value){
     const validator = {
         isValid: true,
@@ -148,6 +168,7 @@ function emailIsValid(value){
         return validator;
     }
 
+    // esse regex verifica a quantidade de caracteres, minusculas, maiusculas...
    const regex = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
    if (!regex.test(value)){
         validator.isValid = false;
@@ -158,6 +179,7 @@ function emailIsValid(value){
     return validator;
 }
 
+// verifica se a senha é segura
 function passwordIsSecure(value){
     const validator = {
         isValid: true,
@@ -188,6 +210,7 @@ function passwordIsSecure(value){
     return validator;
 }
 
+// verifica se a senha bate com a confimação de senha
 function passwordMatch(value){
     const validator = {
         isValid: true,
@@ -211,13 +234,21 @@ function passwordMatch(value){
     return validator;
 }
 
-
+// seleciona os icons da senha
 const passwordIcons = document.querySelectorAll('.password-icon');
 
+// faz para cada password-icon:
 passwordIcons.forEach(icon => {
+
+    // quando clicar no icon ele deve:
     icon.addEventListener('click', function (){
+
+        //seleciona o input
         const input = this.parentElement.querySelector('.form-control');
+        // se for tipo texto ele troca para senha e vice-versa
         input.type = input.type === 'password' ? 'text' : 'password';
+
+        //troca o icone da senha
         this.classList.toggle('fa-eye-slash');
         this.classList.toggle('fa-eye');
     })

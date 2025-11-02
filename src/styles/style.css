@@ -1,5 +1,7 @@
+/* Importando a fonte Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+/* Reset Básico */
 *{
     margin: 0;
     padding: 0;
@@ -7,21 +9,24 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Declarando variaveis */
 :root{
     --background-color:rgb(33, 33, 105);
     --shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.4);
+    --valid: #22c55e;
+    --invalid:#dc2626;
 }
 
 body{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100vh; /* faz o body centralizar verticalmente */
     background-color: var(--background-color);
 }
 
 
-
+/* formatando os botões */
 .btn-default{
     background-color: var(--background-color);
     display: flex;
@@ -43,7 +48,9 @@ body{
 .btn-default:hover{
     background-color: rgb(26, 26, 83);
 }
+/* **************************** */
 
+/* formatando o form */
 #form-container{
     display: flex;
     flex-direction: column;
@@ -67,6 +74,7 @@ body{
     position: relative;
 }
 
+/* linha abaixo do titulo */
 #form-title::after{
     content: '';
     position: absolute;
@@ -86,15 +94,24 @@ body{
     height: 100%;
 }
 
-#input-container{
-    display: grid;
-    gap: 24px;
-}
-
 .form-label{
     font-size: 12px;
     color:rgb(39, 39, 39);
     font-weight: 500;
+}
+
+.form-control{
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+}
+/* *********************** */
+
+/* formatando inputs */
+#input-container{
+    display: grid;
+    gap: 24px;
 }
 
 .input-field{
@@ -114,18 +131,13 @@ body{
     color: #404044;
 }
 
-.form-control{
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-}
-
 .input-field .password-icon:hover{
     cursor: pointer;
     color: #677670;
 }
+/* *************************** */
 
+/* estilizando foco em um input */
 .form-control:focus{
     outline: none;
 }
@@ -138,7 +150,9 @@ input:-webkit-autofill{
     -webkit-box-shadow:0 0 0 1000px white inset !important;
     color: #000;
 }
+/* ********************************* */
 
+/* formatando input de genero */
 .radio-container{
     grid-column: span 2;
 }
@@ -153,43 +167,51 @@ input:-webkit-autofill{
     gap: 4px;
     align-items: center;
 }
+/* ********************** */
 
 .form-control[type="radio"]{
     accent-color: var(--background-color);
 }
 
 .error{
-    color: #dc2626;
+    color: var(--invalid);
     font-size: 12px;
     margin-top: 4px;
     max-width: 200px;
 }
 
+
+/* inputs */
 .input-box.invalid .form-label{
-    color: #dc2626;
+    color: var(--invalid);
 }
 
 .input-box.invalid .input-field{
-    border: 1px solid #dc2626;
+    border: 1px solid  var(--invalid);
 }
 
 .input-box.valid .form-label{
-    color: #22c55e;
+    color: var(--valid);
 }
 
 .input-box.valid .input-field{
-    border: 1px solid #22c55e;
+    border: 1px solid var(--valid);
 }
+/* ************************ */
 
+
+/* seleção de genêros */
 .radio-container.invalid .form-label:first-child{
-    color:#dc2626;
+    color: var(--invalid);
 }
 
 .radio-container.valid .form-label:first-child{
-    color:#22c55e;
+    color: var(--valid);
 }
+/* *********************** */
 
 
+/* Mobile */
 @media screen and (max-width: 500px) {
     #form-container{
         width: 100%;
